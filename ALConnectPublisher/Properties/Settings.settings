@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ALConnectPublisher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Results" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Require Power point to be installed to 
+add a Sermon Messge.
+
+Select either  an image from a local source it 
+will be uploaded to S3 or the  Feature video 
+needs to be a public video  URL.
+</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

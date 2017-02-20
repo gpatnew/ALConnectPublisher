@@ -8,7 +8,7 @@ namespace ALConnectPublisher
 {
     class Constants
     {
-        public const string S3Bucket = "alcmobileapp";
+        public const string S3Bucket = "mobileapp.alfc.us";
         public const string S3FeatureDirectory = "featureitem";
         public const string S3MessageDirectory = "weeklymessage";
         public const string S3NotificationDirectory = "notifications";

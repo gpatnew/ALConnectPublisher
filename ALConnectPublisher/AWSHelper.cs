@@ -54,6 +54,7 @@ namespace ALConnectPublisher
                 var utility = new TransferUtility(client);
 
                 var transferRequest = new TransferUtilityUploadRequest();
+               
                 transferRequest.BucketName =  string.Concat(bucket, "/", path);
                 transferRequest.Key = fileName;
                 transferRequest.ContentType = "text/json";
@@ -76,33 +77,37 @@ namespace ALConnectPublisher
         public List<Subscription> ListNotificationsSubscriptions()
 
         {
-            var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USWest2);
+            var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USWest1);
 
             var request = new ListTopicsRequest();
             var response = new ListTopicsResponse();
             var topicList = new List<Subscription>();
 
-
-            response = client.ListTopics();
-
-            foreach (var topic in response.Topics)
+            try
             {
-                if(topic.TopicArn == Constants.MessageTopic ||topic.TopicArn == Constants.FeatureTopic)
-                {
-                    var subs = client.ListSubscriptionsByTopic(
-                        new ListSubscriptionsByTopicRequest
-                        {
-                            TopicArn = topic.TopicArn
-                        });
+                response = client.ListTopics();
 
-                    var ss = subs.Subscriptions;
-                        
+                foreach (var topic in response.Topics)
+                {
+                    if (topic.TopicArn == Constants.MessageTopic || topic.TopicArn == Constants.FeatureTopic)
+                    {
+                        var subs = client.ListSubscriptionsByTopic(
+                            new ListSubscriptionsByTopicRequest
+                            {
+                                TopicArn = topic.TopicArn
+                            });
+
+                        var ss = subs.Subscriptions;
+
                         foreach (var sub in ss)
                         {
                             topicList.Add(sub);
                         }
-                } 
+                    }
+                }
             }
+            catch(Exception e)
+            { var f = e.Message; }
 
             return topicList;
         }
@@ -110,8 +115,9 @@ namespace ALConnectPublisher
 
         public bool SendNotification(string resourceName, string subject, string message)
         {
+            return false;
             //string resourceName = "arn:aws:sns:us-west-1:650481127744:WeeklyMessage";
-            AmazonSimpleNotificationServiceClient snsclient = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USWest2);
+            AmazonSimpleNotificationServiceClient snsclient = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USWest1);
             PublishRequest pr = new PublishRequest();
             
             pr.Message = message;

@@ -47,8 +47,8 @@ namespace ALConnectPublisher
                 var helper = new AWSHelper();
                 helper.SaveFileToS3(message, Constants.S3Bucket, Constants.S3NotificationDirectory, tbMssageTitle.Text.Trim().Replace(" ", "") + ".json");
                 ResultMessage += helper.Results + Environment.NewLine; ;
-                helper.SendNotification(Constants.MessageTopic, "Message added " + tbMssageTitle.Text, json);
-                ResultMessage += helper.Results + Environment.NewLine; ;
+                //helper.SendNotification(Constants.MessageTopic, "Message added " + tbMssageTitle.Text, json);
+                //ResultMessage += helper.Results + Environment.NewLine; ;
             }
             SetResults();
             BindNotifications();
@@ -99,7 +99,7 @@ namespace ALConnectPublisher
         {
             if(!string.IsNullOrEmpty(tbPowerPoint.Text))
             {
-                var day = "SUN am";
+                var day = "SUN MORN";
                 var filePath = tbPowerPoint.Text;
                 var fileName = filePath.Substring(filePath.LastIndexOf("\\")+1);
                 var datePart = fileName.Substring(0,  fileName.LastIndexOf("-20") + 5);
@@ -175,8 +175,8 @@ namespace ALConnectPublisher
             //create a notification file
             helper.SaveFileToS3(feature, Constants.S3Bucket, Constants.S3NotificationDirectory, string.Concat("Feature_", title));
             ResultMessage = helper.Results;
-            helper.SendNotification(Constants.FeatureTopic, "Feature added ", featureJson);
-            ResultMessage += " " + helper.Results;
+            //helper.SendNotification(Constants.FeatureTopic, "Feature added ", featureJson);
+            //ResultMessage += " " + helper.Results;
             SetResults();
 
         }

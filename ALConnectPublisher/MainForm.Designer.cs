@@ -40,7 +40,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.buttonSelectSermon = new System.Windows.Forms.Button();
             this.buttonPublish = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tbPassage = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbMessageAudio = new System.Windows.Forms.TextBox();
@@ -49,12 +48,6 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subscripeToNotificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelSubscribe = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.labelSubscribeError = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.buttonSubscribe = new System.Windows.Forms.Button();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.panelFeature = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.tbFeatureTitle = new System.Windows.Forms.TextBox();
@@ -75,12 +68,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.labelResults = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelNotifications = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
-            this.panelSubscribe.SuspendLayout();
             this.panelFeature.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panelNotifications.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -147,7 +141,7 @@
             // 
             // dtpMessgeStart
             // 
-            this.dtpMessgeStart.Location = new System.Drawing.Point(93, 161);
+            this.dtpMessgeStart.Location = new System.Drawing.Point(93, 240);
             this.dtpMessgeStart.Name = "dtpMessgeStart";
             this.dtpMessgeStart.Size = new System.Drawing.Size(200, 20);
             this.dtpMessgeStart.TabIndex = 5;
@@ -155,7 +149,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 165);
+            this.label4.Location = new System.Drawing.Point(26, 240);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 7;
@@ -174,7 +168,7 @@
             // buttonPublish
             // 
             this.buttonPublish.Enabled = false;
-            this.buttonPublish.Location = new System.Drawing.Point(364, 225);
+            this.buttonPublish.Location = new System.Drawing.Point(375, 321);
             this.buttonPublish.Name = "buttonPublish";
             this.buttonPublish.Size = new System.Drawing.Size(75, 26);
             this.buttonPublish.TabIndex = 7;
@@ -182,21 +176,12 @@
             this.buttonPublish.UseVisualStyleBackColor = true;
             this.buttonPublish.Click += new System.EventHandler(this.publishButton_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(657, 69);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(415, 380);
-            this.dataGridView1.TabIndex = 10;
-            // 
             // tbPassage
             // 
-            this.tbPassage.Location = new System.Drawing.Point(93, 135);
+            this.tbPassage.Location = new System.Drawing.Point(93, 138);
+            this.tbPassage.Multiline = true;
             this.tbPassage.Name = "tbPassage";
-            this.tbPassage.Size = new System.Drawing.Size(357, 20);
+            this.tbPassage.Size = new System.Drawing.Size(357, 96);
             this.tbPassage.TabIndex = 4;
             this.tbPassage.TextChanged += new System.EventHandler(this.ValidateToPublishMessage);
             // 
@@ -211,7 +196,7 @@
             // 
             // tbMessageAudio
             // 
-            this.tbMessageAudio.Location = new System.Drawing.Point(93, 187);
+            this.tbMessageAudio.Location = new System.Drawing.Point(93, 266);
             this.tbMessageAudio.Name = "tbMessageAudio";
             this.tbMessageAudio.Size = new System.Drawing.Size(357, 20);
             this.tbMessageAudio.TabIndex = 6;
@@ -219,7 +204,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 191);
+            this.label6.Location = new System.Drawing.Point(31, 266);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 13);
             this.label6.TabIndex = 14;
@@ -231,7 +216,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1163, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1238, 24);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -247,76 +232,15 @@
             // subscripeToNotificationToolStripMenuItem
             // 
             this.subscripeToNotificationToolStripMenuItem.Name = "subscripeToNotificationToolStripMenuItem";
-            this.subscripeToNotificationToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.subscripeToNotificationToolStripMenuItem.Text = "subscripe to notification";
+            this.subscripeToNotificationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.subscripeToNotificationToolStripMenuItem.Text = "List of Notifications";
             this.subscripeToNotificationToolStripMenuItem.Click += new System.EventHandler(this.subscripeToNotificationToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // panelSubscribe
-            // 
-            this.panelSubscribe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelSubscribe.Controls.Add(this.linkLabel1);
-            this.panelSubscribe.Controls.Add(this.labelSubscribeError);
-            this.panelSubscribe.Controls.Add(this.label8);
-            this.panelSubscribe.Controls.Add(this.buttonSubscribe);
-            this.panelSubscribe.Controls.Add(this.textBoxEmail);
-            this.panelSubscribe.Location = new System.Drawing.Point(652, 204);
-            this.panelSubscribe.Name = "panelSubscribe";
-            this.panelSubscribe.Size = new System.Drawing.Size(405, 198);
-            this.panelSubscribe.TabIndex = 17;
-            this.panelSubscribe.Visible = false;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(319, 125);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(39, 13);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "cancel";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // labelSubscribeError
-            // 
-            this.labelSubscribeError.AutoSize = true;
-            this.labelSubscribeError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSubscribeError.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelSubscribeError.Location = new System.Drawing.Point(60, 104);
-            this.labelSubscribeError.Name = "labelSubscribeError";
-            this.labelSubscribeError.Size = new System.Drawing.Size(0, 13);
-            this.labelSubscribeError.TabIndex = 3;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(28, 61);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Email";
-            // 
-            // buttonSubscribe
-            // 
-            this.buttonSubscribe.Location = new System.Drawing.Point(200, 115);
-            this.buttonSubscribe.Name = "buttonSubscribe";
-            this.buttonSubscribe.Size = new System.Drawing.Size(75, 23);
-            this.buttonSubscribe.TabIndex = 1;
-            this.buttonSubscribe.Text = "Subscribe";
-            this.buttonSubscribe.UseVisualStyleBackColor = true;
-            this.buttonSubscribe.Click += new System.EventHandler(this.buttonSubscribe_Click);
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(66, 54);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(257, 20);
-            this.textBoxEmail.TabIndex = 0;
             // 
             // panelFeature
             // 
@@ -338,9 +262,9 @@
             this.panelFeature.Controls.Add(this.buttonPublishFeature);
             this.panelFeature.Controls.Add(this.label12);
             this.panelFeature.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelFeature.Location = new System.Drawing.Point(82, 312);
+            this.panelFeature.Location = new System.Drawing.Point(668, 38);
             this.panelFeature.Name = "panelFeature";
-            this.panelFeature.Size = new System.Drawing.Size(510, 348);
+            this.panelFeature.Size = new System.Drawing.Size(525, 375);
             this.panelFeature.TabIndex = 18;
             // 
             // label17
@@ -378,11 +302,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(56, 254);
+            this.label15.Location = new System.Drawing.Point(18, 254);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 17);
+            this.label15.Size = new System.Drawing.Size(79, 17);
             this.label15.TabIndex = 29;
-            this.label15.Text = "Text";
+            this.label15.Text = "Description";
             // 
             // tbFeatureText
             // 
@@ -502,9 +426,9 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tbPassage);
             this.panel1.Controls.Add(this.dtpMessgeStart);
-            this.panel1.Location = new System.Drawing.Point(82, 47);
+            this.panel1.Location = new System.Drawing.Point(82, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(510, 259);
+            this.panel1.Size = new System.Drawing.Size(528, 375);
             this.panel1.TabIndex = 19;
             // 
             // label11
@@ -522,46 +446,49 @@
             this.labelResults.AutoSize = true;
             this.labelResults.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ALConnectPublisher.Properties.Settings.Default, "Results", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResults.Location = new System.Drawing.Point(633, 506);
+            this.labelResults.Location = new System.Drawing.Point(665, 433);
             this.labelResults.Name = "labelResults";
             this.labelResults.Size = new System.Drawing.Size(292, 102);
             this.labelResults.TabIndex = 15;
             this.labelResults.Text = global::ALConnectPublisher.Properties.Settings.Default.Results;
             // 
-            // label7
+            // panelNotifications
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(654, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 18);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Subscribers";
+            this.panelNotifications.Controls.Add(this.dataGridView1);
+            this.panelNotifications.Location = new System.Drawing.Point(82, 419);
+            this.panelNotifications.Name = "panelNotifications";
+            this.panelNotifications.Size = new System.Drawing.Size(551, 241);
+            this.panelNotifications.TabIndex = 20;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(525, 235);
+            this.dataGridView1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1163, 672);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(1238, 672);
+            this.Controls.Add(this.panelNotifications);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelFeature);
-            this.Controls.Add(this.panelSubscribe);
             this.Controls.Add(this.labelResults);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "PPT to ALConnect";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panelSubscribe.ResumeLayout(false);
-            this.panelSubscribe.PerformLayout();
             this.panelFeature.ResumeLayout(false);
             this.panelFeature.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelNotifications.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -581,7 +508,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonSelectSermon;
         private System.Windows.Forms.Button buttonPublish;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox tbPassage;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbMessageAudio;
@@ -590,12 +516,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subscripeToNotificationToolStripMenuItem;
-        private System.Windows.Forms.Panel panelSubscribe;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button buttonSubscribe;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label labelSubscribeError;
         private System.Windows.Forms.Panel panelFeature;
         private System.Windows.Forms.TextBox tbFeatureImage;
         private System.Windows.Forms.Button buttonPublishFeature;
@@ -615,8 +535,9 @@
         private System.Windows.Forms.DateTimePicker dtpFeatureEnd;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbFeatureTitle;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Panel panelNotifications;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

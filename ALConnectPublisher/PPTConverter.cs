@@ -8,13 +8,13 @@ namespace ALConnectPublisher
     {
 
         public string Results { get; set; }
-    /// <summary>
-    /// return the list of imges created from the slides in the PPt
-    /// </summary>
-    /// <param name="file"></param>
-    /// <param name="messageName"></param>
-    /// <param name="path"></param>
-    /// <returns></returns>
+        /// <summary>
+        /// return the list of images created from the slides in the PPt
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="messageName"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public string BuildSlides(string file, string messageName, string path)
         {
             string filelist = "";

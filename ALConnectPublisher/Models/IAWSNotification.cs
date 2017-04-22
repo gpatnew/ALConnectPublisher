@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ALConnectPublisher.Models
 {
-    interface IAWSNotification
+    public interface IAWSNotification
     {
         string Author { get; set; }
 

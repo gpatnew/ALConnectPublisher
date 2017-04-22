@@ -10,6 +10,7 @@ using ALConnectPublisher.Models;
 using System.IO;
 using Newtonsoft.Json;
 using System.Text;
+using Amazon.S3.Model;
 
 namespace ALConnectPublisher
 {
@@ -32,7 +33,7 @@ namespace ALConnectPublisher
                 transferRequest.FilePath = path;
                 transferRequest.CannedACL = S3CannedACL.PublicRead;
                 utility.Upload(transferRequest);
-                Results += string.Format("/r sent ", fileName);
+                Results += string.Format(" File sent {0}{1}", fileName, Environment.NewLine);
                 fileSent = true;
             }
             catch (Exception e)
@@ -45,7 +46,7 @@ namespace ALConnectPublisher
             return fileSent;
         }
 
-        internal bool SaveFileToS3(IAWSNotification obj, string bucket, string path, string fileName)
+        internal bool SaveFileToS3(IAWSNotification obj, string bucket, string subDirectory, string fileName)
         {
             var fileSent = false;
             try
@@ -55,7 +56,7 @@ namespace ALConnectPublisher
 
                 var transferRequest = new TransferUtilityUploadRequest();
                
-                transferRequest.BucketName =  string.Concat(bucket, "/", path);
+                transferRequest.BucketName =  string.Concat(bucket, "/", subDirectory);
                 transferRequest.Key = fileName;
                 transferRequest.ContentType = "text/json";
                 transferRequest.CannedACL = S3CannedACL.PublicRead;
@@ -64,6 +65,8 @@ namespace ALConnectPublisher
                 
                 transferRequest.InputStream = GenerateStreamFromString(json);
                 utility.Upload(transferRequest);
+                fileSent = true;
+                Results += string.Format(" File sent {0}{1}", fileName, Environment.NewLine);
                 fileSent = true;
             }
             catch (Exception E)
@@ -74,44 +77,52 @@ namespace ALConnectPublisher
             return fileSent;
 
         }
-        public List<Subscription> ListNotificationsSubscriptions()
 
+        public List<IAWSNotification> ListNotifications(string bucket, string subDirectory)
         {
-            var client = new AmazonSimpleNotificationServiceClient(RegionEndpoint.USWest1);
-
-            var request = new ListTopicsRequest();
-            var response = new ListTopicsResponse();
-            var topicList = new List<Subscription>();
-
+            var client = new AmazonS3Client(RegionEndpoint.USWest2);
+            var topicList = new List<IAWSNotification>();
             try
             {
-                response = client.ListTopics();
-
-                foreach (var topic in response.Topics)
+                var response =  client.ListObjects(new Amazon.S3.Model.ListObjectsRequest()
                 {
-                    if (topic.TopicArn == Constants.MessageTopic || topic.TopicArn == Constants.FeatureTopic)
-                    {
-                        var subs = client.ListSubscriptionsByTopic(
-                            new ListSubscriptionsByTopicRequest
-                            {
-                                TopicArn = topic.TopicArn
-                            });
+                    BucketName = bucket,
+                    Prefix = subDirectory,
+                    MaxKeys = 250
+                });
 
-                        var ss = subs.Subscriptions;
-
-                        foreach (var sub in ss)
-                        {
-                            topicList.Add(sub);
-                        }
-                    }
+                foreach (S3Object item in response.S3Objects)
+                {
+                    var res = client.GetObject(new GetObjectRequest() { BucketName  = bucket, Key = item.Key});
+                    var note = ParseResponse(res);
+                    if(note != null)
+                        topicList.Add(note);
                 }
+                
             }
             catch(Exception e)
             { var f = e.Message; }
 
             return topicList;
         }
-       
+
+        private IAWSNotification ParseResponse(GetObjectResponse res)
+        {
+            using (var stream = res.ResponseStream)
+            {
+                var reader =  new StreamReader(stream);
+                var notification = reader.ReadToEnd();
+                return ProcessNotification(notification);
+
+            }
+        }
+
+        private IAWSNotification ProcessNotification(string notification)
+        {
+            if (string.IsNullOrEmpty(notification))
+                return null;
+            return JsonConvert.DeserializeObject<Feature>(notification);
+        }
 
         public bool SendNotification(string resourceName, string subject, string message)
         {

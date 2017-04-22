@@ -25,9 +25,9 @@ namespace ALConnectPublisher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Require Power point to be installed to \r\nadd a Sermon Messge.\r\n\r\nSelect either  a" +
-            "n image from a local source it \r\nwill be uploaded to S3 or the  Feature video \r\n" +
-            "needs to be a public video  URL.\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Require Power point to be installed to \nadd a Sermon Message.\n\nSelect either  an " +
+            "image from a local source it \nwill be uploaded to S3 or the  Feature video \nneed" +
+            "s to be a public video  URL.\n")]
         public string Results {
             get {
                 return ((string)(this["Results"]));

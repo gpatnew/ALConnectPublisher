@@ -59,7 +59,10 @@ namespace ALConnectPublisher
             labelResults.Visible = true;
             labelResults.Text = ResultMessage;
         }
-
+        private void ClearResults()
+        {
+            labelResults.Text = string.Empty;
+        }
         private string BuildMessage(string fileList)
         {
             message.Title = tbMssageTitle.Text;
@@ -90,7 +93,7 @@ namespace ALConnectPublisher
         private void BindNotifications()
         {
             var helper = new AWSHelper();
-            dataGridView1.DataSource = helper.ListNotificationsSubscriptions();
+            dataGridView1.DataSource = helper.ListNotifications(Constants.S3Bucket, "notifications");
             dataGridView1.Refresh();
         }
 
@@ -116,40 +119,22 @@ namespace ALConnectPublisher
 
         private void subscripeToNotificationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            panelSubscribe.Visible = true;
-            panelSubscribe.BringToFront();
+            panelNotifications.Visible = true;
+            panelNotifications.BringToFront();
             buttonPublish.Enabled = false;
         }
 
-        private void buttonSubscribe_Click(object sender, EventArgs e)
-        {
-            var validator = new Validator();
-            if(validator.IsEmail(textBoxEmail.Text).IsValid && !string.IsNullOrEmpty(textBoxEmail.Text))
-            {
-                var helper = new AWSHelper();
-                helper.SendSubscription(textBoxEmail.Text);
-                CloseSubscribePanel();
-            }
-            else
-            {
-                labelSubscribeError.Text = "Must be a valid email";
-                labelSubscribeError.Visible = true;
-            }
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CloseSubscribePanel();
+            ClosePanel();
         }
 
-        private void CloseSubscribePanel()
+        private void ClosePanel()
         {
-            buttonPublish.Enabled = true;
-            buttonPublishFeature.Enabled = true;
-            labelSubscribeError.Text = "";
-            labelSubscribeError.Visible = false;
-            panelSubscribe.SendToBack();
-            panelSubscribe.Visible = false;
+
+            panelNotifications.SendToBack();
+            panelNotifications.Visible = false;
 
             BindNotifications();
         }
@@ -176,7 +161,7 @@ namespace ALConnectPublisher
             helper.SaveFileToS3(feature, Constants.S3Bucket, Constants.S3NotificationDirectory, string.Concat("Feature_", title));
             ResultMessage = helper.Results;
             //helper.SendNotification(Constants.FeatureTopic, "Feature added ", featureJson);
-            //ResultMessage += " " + helper.Results;
+            ResultMessage = " " + helper.Results;
             SetResults();
 
         }

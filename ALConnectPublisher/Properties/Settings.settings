@@ -4,7 +4,7 @@
   <Settings>
     <Setting Name="Results" Type="System.String" Scope="User">
       <Value Profile="(Default)">Require Power point to be installed to 
-add a Sermon Messge.
+add a Sermon Message.
 
 Select either  an image from a local source it 
 will be uploaded to S3 or the  Feature video 

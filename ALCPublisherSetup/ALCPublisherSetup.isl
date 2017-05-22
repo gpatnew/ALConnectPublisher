@@ -51,11 +51,11 @@
 	
 	<summary>
 		<codepage>1252</codepage>
-		<title>Installation Database</title>
-		<subject></subject>
+		<title>##ID_STRING5##</title>
+		<subject>##ID_STRING6##</subject>
 		<author>##ID_STRING3##</author>
 		<keywords>Installer,MSI,Database</keywords>
-		<comments>Contact:  Your local administrator</comments>
+		<comments>##ID_STRING7##</comments>
 		<template>Intel;1033</template>
 		<lastauthor>Administrator</lastauthor>
 		<revnumber>{B802F062-8645-45DA-B2E3-30FB737F39FF}</revnumber>
@@ -3724,6 +3724,9 @@
 		<row><td>ID_STRING2</td><td>1033</td><td>http://wix.com/Phil413Media</td><td>0</td><td/><td>-920288601</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>Phil413Media</td><td>0</td><td/><td>-920290681</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-920308793</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>Installation of ALConnect publisher</td><td>0</td><td/><td>-1037738773</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>ALConnect publisher</td><td>0</td><td/><td>-1037726485</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>Contact:  phil413media Admin</td><td>0</td><td/><td>-1037761269</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-920276409</td></row>
 	</table>
 
@@ -3970,7 +3973,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{47AA0E73-ED2D-4D4E-BB59-57B059251117}</td></row>
 		<row><td>ISUSSignature</td><td>{A9D1E707-FE49-48EA-AC86-CA59B8DC352A}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewAppFiles,viewRelease</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
